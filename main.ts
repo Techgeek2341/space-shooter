@@ -18,6 +18,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, Spaceship, -100, 0)
 })
+info.onCountdownEnd(function () {
+    game.over(true, effects.starField)
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fire, 500)
     info.changeScoreBy(1)
@@ -50,6 +53,7 @@ Spaceship = sprites.create(img`
     `, SpriteKind.Player)
 controller.moveSprite(Spaceship, 100, 100)
 Spaceship.setStayInScreen(true)
+info.startCountdown(15)
 game.onUpdateInterval(500, function () {
     Bogey = sprites.create(img`
         . . . . . . . . . . . . . . . . 
